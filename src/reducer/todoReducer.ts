@@ -25,8 +25,8 @@ export function todoReducer(state: IState, action: IAction) {
 
     case ActionTypes.REMOVE_ITEM:
       return produce(state, draft => {
-        draft.items = draft.items
-          .filter(item => item.id !== action.payload)
+        const index = draft.items.findIndex(item => item.id !== action.payload)
+        draft.items.splice(index, 1)
       })
 
     default:
